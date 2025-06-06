@@ -1,9 +1,9 @@
-package com.example.kotlinplayground.presentation.controller
+package com.example.kotlinplayground.user.presentation
 
-import com.example.kotlinplayground.application.dto.CreateUserRequest
-import com.example.kotlinplayground.application.dto.UpdateUserRequest
-import com.example.kotlinplayground.application.dto.UserResponse
-import com.example.kotlinplayground.application.service.UserService
+import com.example.kotlinplayground.user.application.UserService
+import com.example.kotlinplayground.user.application.dto.CreateUserRequest
+import com.example.kotlinplayground.user.application.dto.UpdateUserRequest
+import com.example.kotlinplayground.user.application.dto.UserResponse
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

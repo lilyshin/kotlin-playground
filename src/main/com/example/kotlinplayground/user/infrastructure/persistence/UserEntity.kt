@@ -1,6 +1,6 @@
-package com.example.kotlinplayground.infrastructure.persistence.entity
+package com.example.kotlinplayground.user.infrastructure.persistence
 
-import com.example.kotlinplayground.domain.model.User
+import com.example.kotlinplayground.user.domain.*
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -24,10 +24,10 @@ class UserEntity(
     var updatedAt: LocalDateTime = LocalDateTime.now()
 ) {
     fun toDomain(): User {
-        return User(
-            id = this.id,
-            email = this.email,
-            name = this.name,
+        return User.of(
+            id = UserId(this.id!!),
+            email = Email(this.email),
+            name = UserName(this.name),
             createdAt = this.createdAt,
             updatedAt = this.updatedAt
         )
@@ -36,12 +36,17 @@ class UserEntity(
     companion object {
         fun from(user: User): UserEntity {
             return UserEntity(
-                id = user.id,
-                email = user.email,
-                name = user.name,
+                id = user.id?.value,
+                email = user.email.value,
+                name = user.name.value,
                 createdAt = user.createdAt,
                 updatedAt = user.updatedAt
             )
         }
+    }
+    
+    fun updateFrom(user: User) {
+        this.name = user.name.value
+        this.updatedAt = user.updatedAt
     }
 }

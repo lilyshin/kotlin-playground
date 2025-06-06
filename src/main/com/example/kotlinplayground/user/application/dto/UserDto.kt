@@ -1,6 +1,6 @@
-package com.example.kotlinplayground.application.dto
+package com.example.kotlinplayground.user.application.dto
 
-import com.example.kotlinplayground.domain.model.User
+import com.example.kotlinplayground.user.domain.User
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import java.time.LocalDateTime
@@ -29,9 +29,9 @@ data class UserResponse(
     companion object {
         fun from(user: User): UserResponse {
             return UserResponse(
-                id = user.id!!,
-                email = user.email,
-                name = user.name,
+                id = user.id!!.value,
+                email = user.email.value,
+                name = user.name.value,
                 createdAt = user.createdAt,
                 updatedAt = user.updatedAt
             )

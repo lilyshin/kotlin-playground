@@ -1,7 +1,7 @@
-package com.example.kotlinplayground.presentation.exception
+package com.example.kotlinplayground.common.exception
 
-import com.example.kotlinplayground.domain.exception.UserAlreadyExistsException
-import com.example.kotlinplayground.domain.exception.UserNotFoundException
+import com.example.kotlinplayground.user.domain.UserAlreadyExistsException
+import com.example.kotlinplayground.user.domain.UserNotFoundException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.FieldError
@@ -48,6 +48,15 @@ class GlobalExceptionHandler {
             message = "입력값이 유효하지 않습니다",
             code = "VALIDATION_ERROR",
             details = errors
+        )
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse)
+    }
+    
+    @ExceptionHandler(IllegalArgumentException::class)
+    fun handleIllegalArgumentException(ex: IllegalArgumentException): ResponseEntity<ErrorResponse> {
+        val errorResponse = ErrorResponse(
+            message = ex.message ?: "잘못된 요청입니다",
+            code = "BAD_REQUEST"
         )
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse)
     }

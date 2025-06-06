@@ -1,6 +1,5 @@
-package com.example.kotlinplayground.infrastructure.persistence.repository
+package com.example.kotlinplayground.user.infrastructure.persistence
 
-import com.example.kotlinplayground.infrastructure.persistence.entity.UserEntity
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface JpaUserRepository : JpaRepository<UserEntity, Long> {
